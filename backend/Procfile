@@ -1,0 +1,1 @@
+web: gunicorn handmade_store.wsgi --log-file -

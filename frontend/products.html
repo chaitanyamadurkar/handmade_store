@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — Handmade Haven</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="index.html">🧵 Handmade <span>Haven</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html" class="active">Shop</a></li>
+      <li><a href="index.html#why-us">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cart-btn" onclick="location.href='products.html'">🛍️ Shop Now</button>
+    <button class="hamburger" id="ham-btn">☰</button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <h1>Our Collection</h1>
+    <p>Handcrafted with love by artisans across India</p>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="container filter-inner">
+    <h2 id="result-count">All Products</h2>
+    <div class="filter-chips" id="category-chips">
+      <button class="chip active" data-cat="">All</button>
+    </div>
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="search-input" placeholder="Search products…" />
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS GRID -->
+<section class="section-sm">
+  <div class="container">
+    <div class="products-grid" id="products-grid">
+      <div class="loading-center" style="grid-column:1/-1"><div class="spinner"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>🧵 Handmade Haven</h3>
+        <p>Supporting Indian artisans since 2023.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://wa.me/919876543210">WhatsApp</a></li>
+          <li><a href="mailto:hello@handmadehaven.in">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Handmade Haven</p></div>
+  </div>
+</footer>
+
+<div id="global-toast" class="toast"></div>
+<script src="js/api.js"></script>
+<script>
+  let allProducts  = [];
+  let allCategories = [];
+  let activeCategory = getParam('category') || '';
+  let searchQuery = '';
+
+  // Sample data for when backend is offline
+  const SAMPLE = [
+    { id:1, name:'Ceramic Hand Bowl', description:'Hand-thrown terracotta bowl with natural glaze. Perfect for salads and serving.',    price:'450.00', category_name:'Pottery',   is_featured:true,  in_stock:true,  image_url:null },
+    { id:2, name:'Macramé Wall Art',  description:'Bohemian wall hanging woven from 100% cotton rope. Adds warmth to any room.',        price:'820.00', category_name:'Textiles',  is_featured:true,  in_stock:true,  image_url:null },
+    { id:3, name:'Silver Jhumki Earrings', description:'Sterling silver earrings with hand-engraved floral motifs. Lightweight & elegant.', price:'1200.00', category_name:'Jewellery', is_featured:true, in_stock:true,  image_url:null },
+    { id:4, name:'Hand-woven Tote',   description:'Natural jute tote bag woven by artisans in West Bengal. Eco-friendly & durable.',    price:'650.00', category_name:'Textiles',  is_featured:false, in_stock:true,  image_url:null },
+    { id:5, name:'Madhubani Painting', description:'Authentic Madhubani art on handmade paper, depicting nature and mythology.',         price:'1800.00', category_name:'Art',       is_featured:false, in_stock:true,  image_url:null },
+    { id:6, name:'Beeswax Candle Set', description:'Handpoured beeswax candles with dried flowers. Warm honey scent, burns clean.',     price:'390.00', category_name:'Decor',     is_featured:false, in_stock:false, image_url:null },
+    { id:7, name:'Copper Water Bottle', description:'Hand-hammered pure copper bottle with Ayurvedic benefits. Keeps water cool.',       price:'960.00', category_name:'Kitchen',   is_featured:false, in_stock:true,  image_url:null },
+    { id:8, name:'Beaded Bracelet',   description:'Colourful seed bead bracelet made by tribal artisans in Rajasthan.',                 price:'280.00', category_name:'Jewellery', is_featured:false, in_stock:true,  image_url:null },
+  ];
+
+  function renderProducts(list) {
+    const grid = document.getElementById('products-grid');
+    const count = document.getElementById('result-count');
+    if (!list.length) {
+      grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="icon">🔍</div><h3>No products found</h3><p>Try a different search or category</p></div>';
+      count.textContent = '0 products';
+      return;
+    }
+    count.textContent = `${list.length} product${list.length === 1 ? '' : 's'}`;
+    const emojis = { Pottery:'🏺', Textiles:'🧵', Jewellery:'💍', Art:'🎨', Decor:'🕯️', Kitchen:'🍶' };
+    grid.innerHTML = list.map((p, i) => {
+      const imgHTML = p.image_url
+        ? `<img src="${p.image_url}" alt="${p.name}" loading="lazy" />`
+        : `<div class="placeholder">${emojis[p.category_name] || '🛍️'}</div>`;
+      return `
+        <div class="product-card fade-up" style="animation-delay:${Math.min(i*0.08, 0.4)}s" onclick="location.href='product.html?id=${p.id}'">
+          <div class="product-card-img">
+            ${imgHTML}
+            ${p.is_featured ? '<span class="badge-featured">Featured</span>' : ''}
+            ${!p.in_stock ? '<span class="badge-out">Out of Stock</span>' : ''}
+          </div>
+          <div class="product-card-body">
+            <div class="product-cat">${p.category_name || 'Handmade'}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-desc">${p.description}</div>
+            <div class="product-footer">
+              <div class="product-price">${formatPrice(p.price)}</div>
+              <button class="btn btn-primary btn-card" onclick="event.stopPropagation(); location.href='product.html?id=${p.id}'">
+                ${p.in_stock ? 'Order Now' : 'View Details'}
+              </button>
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function applyFilters() {
+    let list = allProducts;
+    if (activeCategory) list = list.filter(p => p.category_name?.toLowerCase() === activeCategory.toLowerCase());
+    if (searchQuery)    list = list.filter(p => p.name.toLowerCase().includes(searchQuery) || p.description.toLowerCase().includes(searchQuery));
+    renderProducts(list);
+  }
+
+  function buildCategoryChips(products) {
+    const cats = [...new Set(products.map(p => p.category_name).filter(Boolean))];
+    const chipsEl = document.getElementById('category-chips');
+    chipsEl.innerHTML = `<button class="chip ${!activeCategory ? 'active' : ''}" data-cat="">All</button>` +
+      cats.map(c => `<button class="chip ${activeCategory === c ? 'active' : ''}" data-cat="${c}">${c}</button>`).join('');
+    chipsEl.querySelectorAll('.chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        chipsEl.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.cat;
+        applyFilters();
+      });
+    });
+  }
+
+  async function loadProducts() {
+    const grid = document.getElementById('products-grid');
+    try {
+      const data = await API.get('/api/products/');
+      allProducts = data.results || data;
+      buildCategoryChips(allProducts);
+      applyFilters();
+    } catch (e) {
+      allProducts = SAMPLE;
+      buildCategoryChips(allProducts);
+      applyFilters();
+      console.warn('Using sample data — start Django server for live data');
+    }
+  }
+
+  document.getElementById('search-input').addEventListener('input', e => {
+    searchQuery = e.target.value.toLowerCase();
+    applyFilters();
+  });
+
+  loadProducts();
+</script>
+</body>
+</html>

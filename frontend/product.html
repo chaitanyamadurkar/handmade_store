@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product — Handmade Haven</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="index.html">🧵 Handmade <span>Haven</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html" class="active">Shop</a></li>
+      <li><a href="index.html#why-us">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cart-btn" onclick="location.href='products.html'">🛍️ Shop</button>
+    <button class="hamburger" id="ham-btn">☰</button>
+  </div>
+</nav>
+
+<section class="section">
+  <div class="container">
+    <div id="product-content">
+      <div class="loading-center"><div class="spinner"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMILAR PRODUCTS -->
+<section class="section" style="background:var(--parchment); display:none" id="similar-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag">✦ You May Also Like</div>
+      <h2>More from our Collection</h2>
+    </div>
+    <div class="products-grid" id="similar-grid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>🧵 Handmade Haven</h3>
+        <p>Supporting Indian artisans since 2023.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Shop</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://wa.me/919876543210">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Handmade Haven</p></div>
+  </div>
+</footer>
+
+<div id="global-toast" class="toast"></div>
+<script src="js/api.js"></script>
+<script>
+const SAMPLE = {
+  1: { id:1, name:'Ceramic Hand Bowl', description:'Hand-thrown terracotta bowl with a natural ash glaze. Each piece is unique — slight variations in glaze and form are hallmarks of authentic handcraft. Microwave and dishwasher safe. Diameter ~18cm.', price:'450.00', category_name:'Pottery', is_featured:true, in_stock:true, stock:12, image_url:null },
+  2: { id:2, name:'Macramé Wall Art',  description:'Bohemian wall hanging woven from 100% natural cotton rope. Size: 45cm × 80cm. Includes a driftwood hanging rod. Ships flat, shapes up beautifully when hung.', price:'820.00', category_name:'Textiles', is_featured:true, in_stock:true, stock:5, image_url:null },
+  3: { id:3, name:'Silver Jhumki Earrings', description:'925 Sterling silver earrings with hand-engraved floral motifs and tiny amethyst drops. Hypoallergenic hooks. Weight ~4g per pair. Comes in a gift box.', price:'1200.00', category_name:'Jewellery', is_featured:true, in_stock:true, stock:8, image_url:null },
+};
+const EMOJIS = { Pottery:'🏺', Textiles:'🧵', Jewellery:'💍', Art:'🎨', Decor:'🕯️', Kitchen:'🍶' };
+
+let currentProduct = null;
+let quantity = 1;
+
+function renderProduct(p) {
+  currentProduct = p;
+  const emoji = EMOJIS[p.category_name] || '🛍️';
+  const imgHTML = p.image_url
+    ? `<img src="${p.image_url}" alt="${p.name}" />`
+    : `<div class="placeholder" style="height:420px;display:flex;align-items:center;justify-content:center;font-size:6rem;background:var(--parchment)">${emoji}</div>`;
+
+  document.getElementById('product-content').innerHTML = `
+    <div class="detail-grid fade-up">
+      <div class="detail-img">${imgHTML}</div>
+      <div class="detail-info">
+        <div class="breadcrumb"><a href="index.html">Home</a> / <a href="products.html">Shop</a> / ${p.category_name || 'Products'}</div>
+        ${p.is_featured ? '<div class="tag" style="margin-bottom:12px">⭐ Featured Product</div>' : ''}
+        <h1>${p.name}</h1>
+        <div class="detail-price">${formatPrice(p.price)}</div>
+        <div class="detail-stock ${p.in_stock ? 'in-stock' : 'out'}">
+          ${p.in_stock ? `✓ In Stock (${p.stock} available)` : '✗ Out of Stock'}
+        </div>
+        <p class="detail-desc">${p.description}</p>
+
+        ${p.in_stock ? `
+        <div class="qty-row">
+          <span class="qty-label">Quantity:</span>
+          <div class="qty-ctrl">
+            <button onclick="changeQty(-1)">−</button>
+            <span id="qty-display">1</span>
+            <button onclick="changeQty(1)">+</button>
+          </div>
+          <span style="font-size:14px; color:var(--muted)" id="qty-max">Max: ${p.stock}</span>
+        </div>
+
+        <!-- ORDER FORM -->
+        <div class="order-form">
+          <h2>📦 Place Your Order</h2>
+          <div class="order-summary" id="order-summary">
+            <div class="order-summary-row"><span>${p.name}</span><span>${formatPrice(p.price)}</span></div>
+            <div class="order-summary-row"><span>Quantity</span><span id="sum-qty">×1</span></div>
+            <div class="order-summary-row total"><span>Total</span><span id="sum-total">${formatPrice(p.price)}</span></div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name *</label>
+              <input type="text" id="cust-name" placeholder="Priya Sharma" required />
+            </div>
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" id="cust-phone" placeholder="+91 98765 43210" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" id="cust-email" placeholder="priya@example.com" required />
+          </div>
+          <div class="form-group">
+            <label>Delivery Address *</label>
+            <textarea id="cust-address" placeholder="Flat 12, Rose Apartments, MG Road, Mumbai 400001" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Special Instructions (optional)</label>
+            <textarea id="cust-notes" placeholder="Gift wrapping? Specific colour? Anything else?"></textarea>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:16px" onclick="placeOrder()">
+            🛒 Confirm Order
+          </button>
+          <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:12px">
+            📞 We'll call to confirm your order within 24 hours
+          </p>
+        </div>
+        ` : `
+        <div style="padding:24px;background:var(--parchment);border-radius:var(--radius);text-align:center">
+          <p style="font-size:18px;color:var(--muted)">This product is currently out of stock.</p>
+          <a href="https://wa.me/919876543210?text=Hi! I'm interested in ${encodeURIComponent(p.name)} when it's back in stock." class="btn btn-whatsapp" style="margin-top:16px" target="_blank">
+            💬 Notify me via WhatsApp
+          </a>
+        </div>
+        `}
+      </div>
+    </div>
+  `;
+}
+
+function changeQty(delta) {
+  if (!currentProduct) return;
+  quantity = Math.max(1, Math.min(currentProduct.stock, quantity + delta));
+  document.getElementById('qty-display').textContent = quantity;
+  document.getElementById('sum-qty').textContent = `×${quantity}`;
+  const total = parseFloat(currentProduct.price) * quantity;
+  document.getElementById('sum-total').textContent = formatPrice(total);
+}
+
+async function placeOrder() {
+  const name    = document.getElementById('cust-name').value.trim();
+  const phone   = document.getElementById('cust-phone').value.trim();
+  const email   = document.getElementById('cust-email').value.trim();
+  const address = document.getElementById('cust-address').value.trim();
+  const notes   = document.getElementById('cust-notes')?.value.trim() || '';
+
+  if (!name || !phone || !email || !address) {
+    showToast('Please fill in all required fields', 'error');
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showToast('Please enter a valid email address', 'error');
+    return;
+  }
+
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = 'Placing order…';
+
+  try {
+    await API.post('/api/orders/', {
+      customer_name:  name,
+      customer_email: email,
+      customer_phone: phone,
+      address,
+      notes,
+      product:  currentProduct.id,
+      quantity,
+    });
+    showToast(`Order placed! We'll confirm via call soon. 🎉`, 'success');
+    btn.textContent = '✓ Order Placed!';
+    btn.style.background = 'var(--sage)';
+    setTimeout(() => location.href = 'products.html', 2500);
+  } catch (err) {
+    // Demo mode — simulate success
+    showToast(`Demo mode: Order received for "${currentProduct.name}"! 🎉`, 'success');
+    btn.textContent = '✓ Order Placed (Demo)!';
+    btn.style.background = 'var(--sage)';
+    setTimeout(() => location.href = 'products.html', 2500);
+  }
+}
+
+async function loadProduct() {
+  const id = getParam('id');
+  if (!id) { location.href = 'products.html'; return; }
+
+  try {
+    const p = await API.get(`/api/products/${id}/`);
+    renderProduct(p);
+  } catch (e) {
+    const p = SAMPLE[id] || Object.values(SAMPLE)[0];
+    renderProduct(p);
+    console.warn('Using sample data');
+  }
+}
+
+loadProduct();
+</script>
+</body>
+</html>

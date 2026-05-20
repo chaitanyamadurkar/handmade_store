@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Floral-knot</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="index.html">Floral <span>Knot</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li><a href="#why-us">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cart-btn" onclick="location.href='products.html'">🧺 Shop Now</button>
+    <button class="hamburger" id="ham-btn">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="fade-up">
+      <div class="hero-eyebrow">✦ Crafted with heart, shipped with love</div>
+      <h1>Every piece tells a <em>story</em></h1>
+      <p>Discover one-of-a-kind handmade treasures — jewellery, pottery, textiles & more — made by skilled artisans across India.</p>
+      <div class="hero-actions">
+        <a href="products.html" class="btn btn-primary">Browse Collection →</a>
+        <a href="#why-us" class="btn btn-ghost">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-up delay-2">
+      <div class="hero-card">
+        <div class="emoji">🏺</div>
+        <h4>Pottery</h4>
+        <p>Hand-thrown & kiln-fired</p>
+      </div>
+      <div class="hero-card">
+        <div class="emoji">🧶</div>
+        <h4>Textiles</h4>
+        <p>Woven with tradition</p>
+      </div>
+      <div class="hero-card">
+        <div class="emoji">💎</div>
+        <h4>Jewellery</h4>
+        <p>Sterling & semi-precious</p>
+      </div>
+      <div class="hero-card">
+        <div class="emoji">🕯️</div>
+        <h4>Home Decor</h4>
+        <p>Warm & artisan-made</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container stats-inner">
+    <div class="stat"><div class="stat-num">200+</div><div class="stat-label">Unique Products</div></div>
+    <div class="stat"><div class="stat-num">1000+</div><div class="stat-label">Happy Customers</div></div>
+    <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Average Rating</div></div>
+  </div>
+</div>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag">✦ Featured This Week</div>
+      <h2>Handpicked Just for You</h2>
+      <p>Our most-loved artisan pieces, carefully selected from across India.</p>
+    </div>
+    <div class="products-grid" id="featured-grid">
+      <div class="loading-center"><div class="spinner"></div></div>
+    </div>
+    <div style="text-align:center; margin-top: 48px;">
+      <a href="products.html" class="btn btn-outline">View All Products →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section" id="why-us" style="background: var(--parchment)">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag">✦ Why Choose Us</div>
+      <h2>The Handmade Haven Promise</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h3>Ethically Sourced</h3>
+        <p>Every product supports real artisans, paying fair wages and celebrating traditional craft.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌿</div>
+        <h3>Eco-Friendly</h3>
+        <p>Natural materials, biodegradable packaging. We care about the planet as much as craft.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎁</div>
+        <h3>Gift Ready</h3>
+        <p>Beautiful gift wrapping with a handwritten note — perfect for every occasion.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🚚</div>
+        <h3>Pan-India Delivery</h3>
+        <p>We ship to every corner of India. Free delivery on orders above ₹999.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / WHATSAPP -->
+<section class="contact-strip" id="contact">
+  <div class="container">
+    <h2>Want to order via WhatsApp? 💬</h2>
+    <p>Chat directly with us for custom orders, bulk orders, or any questions!</p>
+    <div class="contact-actions">
+      <a href="https://wa.me/917447220382?text=Hi! I'd like to order from Handmade Haven." class="btn btn-whatsapp" target="_blank">
+        💬 WhatsApp Us
+      </a>
+      <a href="products.html" class="btn btn-ghost">Browse Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>🧵 Handmade Haven</h3>
+        <p>Connecting you with India's finest artisans since 2023. Every purchase supports a craftsperson's livelihood.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="products.html?category=jewellery">Jewellery</a></li>
+          <li><a href="products.html?category=pottery">Pottery</a></li>
+          <li><a href="products.html?category=textiles">Textiles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="https://wa.me/9588685470">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Handmade Haven. Made with ❤️ for Indian artisans.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="global-toast" class="toast"></div>
+
+<script src="js/api.js"></script>
+<script>
+  // Load featured products
+  async function loadFeatured() {
+    const grid = document.getElementById('featured-grid');
+    try {
+      const products = await API.get('/api/products/?featured=true');
+      const list = products.results || products;
+      if (!list.length) {
+        grid.innerHTML = '<div class="empty-state"><div class="icon">🏺</div><h3>No featured products yet</h3><p>Check back soon!</p></div>';
+        return;
+      }
+      grid.innerHTML = list.slice(0, 4).map(productCardHTML).join('');
+    } catch (e) {
+      // Show placeholder cards if backend not running
+      grid.innerHTML = `
+        ${['Ceramic Hand Bowl', 'Macramé Wall Art', 'Silver Jhumki Earrings', 'Hand-woven Tote'].map((name, i) => `
+          <div class="product-card fade-up" style="animation-delay:${i*0.1}s" onclick="location.href='products.html'">
+            <div class="product-card-img"><div class="placeholder">${['🏺','🧵','💍','👜'][i]}</div></div>
+            <div class="product-card-body">
+              <div class="product-cat">Artisan Pick</div>
+              <div class="product-name">${name}</div>
+              <div class="product-desc">A beautiful handcrafted piece made with traditional techniques and natural materials.</div>
+              <div class="product-footer">
+                <div class="product-price">₹${[450,820,1200,650][i]}.00</div>
+                <button class="btn btn-primary btn-card">Order Now</button>
+              </div>
+            </div>
+          </div>`).join('')}
+      `;
+      console.warn('Backend not running — showing placeholder data:', e.message);
+    }
+  }
+  loadFeatured();
+</script>
+</body>
+</html>
