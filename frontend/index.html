@@ -5,21 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Floral-knot</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="container nav-inner">
-    <a class="nav-logo" href="index.html">Floral <span>Knot</span></a>
+    <a class="nav-logo" href="index.html"> <span><img src="./assets/logo.png" alt="Floral Knot "></span></a>
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="products.html">Shop</a></li>
       <li><a href="#why-us">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-cart-btn" onclick="location.href='products.html'">🧺 Shop Now</button>
-    <button class="hamburger" id="ham-btn">☰</button>
+    <ul class="nav-links">
+      <li><a href="https://www.instagram.com/d.floral.knot_/"><i class="fa-brands fa-instagram"></i></a></li>
+      <li><a href=""><i class="fa-brands fa-facebook"></i></a></li>
+      <li><a href=""><i class="fa-brands fa-bluesky"></i></a></li>
+    </ul>
+    <button class="nav-cart-btn" onclick="location.href='products.html'"><i class="fa-solid fa-basket-shopping"></i> Shop Now</button>
+    
   </div>
 </nav>
 
@@ -29,45 +35,63 @@
     <div class="fade-up">
       <div class="hero-eyebrow">✦ Crafted with heart, shipped with love</div>
       <h1>Every piece tells a <em>story</em></h1>
-      <p>Discover one-of-a-kind handmade treasures — jewellery, pottery, textiles & more — made by skilled artisans across India.</p>
+      <p>At Floral Knot, we create handmade blooms and floral keepsakes designed to stay beautiful forever. From bouquet bunches and floral cards to pot sets and curtain holders, every piece is carefully crafted to turn simple moments into lasting memories.</p>
       <div class="hero-actions">
         <a href="products.html" class="btn btn-primary">Browse Collection →</a>
         <a href="#why-us" class="btn btn-ghost">Our Story</a>
-      </div>
-    </div>
-    <div class="hero-visual fade-up delay-2">
-      <div class="hero-card">
-        <div class="emoji">🏺</div>
-        <h4>Pottery</h4>
-        <p>Hand-thrown & kiln-fired</p>
-      </div>
-      <div class="hero-card">
-        <div class="emoji">🧶</div>
-        <h4>Textiles</h4>
-        <p>Woven with tradition</p>
-      </div>
-      <div class="hero-card">
-        <div class="emoji">💎</div>
-        <h4>Jewellery</h4>
-        <p>Sterling & semi-precious</p>
-      </div>
-      <div class="hero-card">
-        <div class="emoji">🕯️</div>
-        <h4>Home Decor</h4>
-        <p>Warm & artisan-made</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- STATS -->
-<div class="stats-bar">
-  <div class="container stats-inner">
-    <div class="stat"><div class="stat-num">200+</div><div class="stat-label">Unique Products</div></div>
-    <div class="stat"><div class="stat-num">1000+</div><div class="stat-label">Happy Customers</div></div>
-    <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Average Rating</div></div>
+<section class="feature-strip">
+  <div class="feature-item">
+    <div class="icon-circle">
+      <i class="fa-solid fa-hand-holding"></i>
+    </div>
+    <div class="text">
+      <h4>Handmade with Love</h4>
+      <p>Each piece is crafted with care.</p>
+    </div>
   </div>
-</div>
+
+  <div class="divider"></div>
+
+  <div class="feature-item">
+    <div class="icon-circle">
+      <i class="fa-brands fa-pagelines"></i>
+    </div>
+    <div class="text">
+      <h4>Eco Friendly</h4>
+      <p>We use sustainable & eco-friendly materials.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="feature-item">
+    <div class="icon-circle">
+      <i class="fa-solid fa-gift"></i>
+    </div>
+    <div class="text">
+      <h4>Perfect for Gifting</h4>
+      <p>Unique, thoughtful & beautifully packed.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="feature-item">
+    <div class="icon-circle">
+      <i class="fa-solid fa-truck"></i>
+    </div>
+    <div class="text">
+      <h4>Pan-India Delivery</h4>
+      <p>Safe & secure delivery at your doorstep.</p>
+    </div>
+  </div>
+</section>
 
 <!-- FEATURED PRODUCTS -->
 <section class="section">
@@ -75,7 +99,7 @@
     <div class="section-header">
       <div class="tag">✦ Featured This Week</div>
       <h2>Handpicked Just for You</h2>
-      <p>Our most-loved artisan pieces, carefully selected from across India.</p>
+      <p>created with love</p>
     </div>
     <div class="products-grid" id="featured-grid">
       <div class="loading-center"><div class="spinner"></div></div>
@@ -87,45 +111,60 @@
 </section>
 
 <!-- WHY US -->
-<section class="section" id="why-us" style="background: var(--parchment)">
+<section class="section" id="test" style="background: var(--parchment)">
   <div class="container">
     <div class="section-header">
       <div class="tag">✦ Why Choose Us</div>
-      <h2>The Handmade Haven Promise</h2>
+      <h2>The Floral Knot Promise</h2>
     </div>
     <div class="why-grid">
       <div class="why-card">
-        <div class="why-icon">🤝</div>
-        <h3>Ethically Sourced</h3>
-        <p>Every product supports real artisans, paying fair wages and celebrating traditional craft.</p>
+        <div class="why-icon">⭐⭐⭐⭐⭐</div>
+        <h3>Priya, Pune</h3>
+        <p>“Absolutely beautiful craftsmanship!”</p>
       </div>
+      
       <div class="why-card">
-        <div class="why-icon">🌿</div>
-        <h3>Eco-Friendly</h3>
-        <p>Natural materials, biodegradable packaging. We care about the planet as much as craft.</p>
+        <div class="why-icon">⭐⭐⭐⭐⭐</div>
+        <h3>Rohan, maharashtra</h3>
+        <p>“I love that my bouquet is eco-friendly and lasts forever!”</p>
       </div>
+
       <div class="why-card">
-        <div class="why-icon">🎁</div>
-        <h3>Gift Ready</h3>
-        <p>Beautiful gift wrapping with a handwritten note — perfect for every occasion.</p>
+        <div class="why-icon">⭐⭐⭐⭐⭐</div>
+        <h3>Aisha, Bangalore</h3>
+        <p>“The customer service was fantastic. They helped me choose the perfect floral card for my mom’s birthday!”</p>
       </div>
+
       <div class="why-card">
-        <div class="why-icon">🚚</div>
-        <h3>Pan-India Delivery</h3>
-        <p>We ship to every corner of India. Free delivery on orders above ₹999.</p>
+        <div class="why-icon">⭐⭐⭐⭐⭐</div>
+        <h3>Vikram, Goa</h3>
+        <p>“I ordered a pot set as a gift and it was a huge hit. So unique and well-made!”</p>
       </div>
     </div>
   </div>
 </section>
 
+<section class="section" id="why-us" >
+  <div class="section-header">
+    <div class="tag">✦ About Us </div>
+    <h2>About Us</h2>
+    <p id = "abts">Floral Knot started with a 
+      simple love for creating flowers that could stay forever. What began as handmade blooms made with care slowly turned into a small dream filled with creativity, warmth, and meaningful gifting.
+      Every bouquet, floral card, pot set, and tiny décor piece is handcrafted patiently — knot by knot — to bring emotions into something you can keep forever. We believe flowers are more than just gifts; they hold memories, feelings, and moments that deserve to last a little longer.
+      At Floral Knot, we create everlasting floral pieces that add softness, happiness, and beauty to everyday life — all handmade with love and thoughtful details. 🌷✨</p>
+ 
+</div>
+</section>
+
 <!-- CONTACT / WHATSAPP -->
 <section class="contact-strip" id="contact">
   <div class="container">
-    <h2>Want to order via WhatsApp? 💬</h2>
+    <h2>Want to order via WhatsApp? </h2>
     <p>Chat directly with us for custom orders, bulk orders, or any questions!</p>
     <div class="contact-actions">
-      <a href="https://wa.me/917447220382?text=Hi! I'd like to order from Handmade Haven." class="btn btn-whatsapp" target="_blank">
-        💬 WhatsApp Us
+      <a href="https://wa.me/917447220382?text=Hi! I'd like to order from Floral Knot." class="btn btn-whatsapp" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
       </a>
       <a href="products.html" class="btn btn-ghost">Browse Products</a>
     </div>
@@ -137,16 +176,16 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <h3>🧵 Handmade Haven</h3>
-        <p>Connecting you with India's finest artisans since 2023. Every purchase supports a craftsperson's livelihood.</p>
+        <h3>Floral Knot</h3>
+        <p></p>
       </div>
       <div class="footer-col">
         <h4>Shop</h4>
         <ul>
           <li><a href="products.html">All Products</a></li>
-          <li><a href="products.html?category=jewellery">Jewellery</a></li>
-          <li><a href="products.html?category=pottery">Pottery</a></li>
-          <li><a href="products.html?category=textiles">Textiles</a></li>
+          <li><a href="products.html?category=curtain holder">Curtain Holders</a></li>
+          <li><a href="products.html?category=Floral card">Floral card</a></li>
+          <li><a href="products.html?category=Pot Sets">Pot Sets</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -155,12 +194,12 @@
           <li><a href="#">Shipping Policy</a></li>
           <li><a href="#">Returns</a></li>
           <li><a href="#">Track Order</a></li>
-          <li><a href="https://wa.me/9588685470">Contact Us</a></li>
+          <li><a href="https://wa.me/917447220382">Contact Us</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Handmade Haven. Made with ❤️ for Indian artisans.</p>
+      <p>© 2026 Floral Knot. Made with ❤️ </p>
     </div>
   </div>
 </footer>
