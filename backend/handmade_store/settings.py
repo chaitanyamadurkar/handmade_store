@@ -19,7 +19,14 @@ ALLOWED_HOSTS = os.environ.get(
 CSRF_TRUSTED_ORIGINS = [
     'https://floral-knot.up.railway.app',
     'https://*.railway.app',
+    'https://*.netlify.app',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    'https://floral-knot-d.netlify.app',
+]
+
+CORS_ALLOW_ALL_ORIGINS = False
 # ── Apps ─────────────────────────────────────────────────────────────────────
 INSTALLED_APPS = [
     'django.contrib.admin',
