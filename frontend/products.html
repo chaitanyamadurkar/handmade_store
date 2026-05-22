@@ -5,20 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shop — Floral Knot</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
 <nav class="navbar">
   <div class="container nav-inner">
-    <a class="nav-logo" href="index.html">Floral <span>Knot</span></a>
+    <a class="nav-logo" href="index.html"> <span><img src="./assets/logo.png" alt="Floral Knot "></span></a>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="products.html" class="active">Shop</a></li>
-      <li><a href="index.html#why-us">About</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li><a href="./index.html">About</a></li>
+      <li><a href="./index.html">Contact</a></li>
     </ul>
-    <button class="nav-cart-btn" onclick="location.href='products.html'">🛍️ Shop Now</button>
-    <button class="hamburger" id="ham-btn">☰</button>
+    <ul class="nav-links">
+      <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+      <li><a href=""><i class="fa-brands fa-facebook"></i></a></li>
+      <li><a href=""><i class="fa-brands fa-bluesky"></i></a></li>
+    </ul>
+    <button class="nav-cart-btn" onclick="location.href='products.html'"><i class="fa-solid fa-basket-shopping"></i> Shop Now</button>
+    
   </div>
 </nav>
 
@@ -38,7 +44,7 @@
       <button class="chip active" data-cat="">All</button>
     </div>
     <div class="search-box">
-      <span>🔍</span>
+      <span><i class="fa-solid fa-magnifying-glass"></i></span>
       <input type="text" id="search-input" placeholder="Search products…" />
     </div>
   </div>
@@ -59,7 +65,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <h3>Floral Knot</h3>
-        <p>Supporting Indian artisans since 2026.</p>
+        <p>Sustainable handmade blooms for every occasion.</p>
       </div>
       <div class="footer-col">
         <h4>Quick Links</h4>
@@ -72,12 +78,12 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="https://wa.me/917447220382">WhatsApp</a></li>
+          <li><a href="https://wa.me/7447220382">WhatsApp</a></li>
           <li><a href="mailto:madurkarchaitanya@gmail.com">Email Us</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom"><p>© 2026</p></div>
+    <div class="footer-bottom"><p>© 2026 floral knot</p></div>
   </div>
 </footer>
 
