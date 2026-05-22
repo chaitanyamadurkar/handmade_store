@@ -4,7 +4,7 @@
    Change BASE_URL to your Django server address
 ───────────────────────────────────────────────── */
 
-const BASE_URL = 'floral-knot.up.railway.app';
+const BASE_URL = 'https://floral-knot.up.railway.app';
 
 const API = {
   async get(endpoint) {
