@@ -26,7 +26,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://floral-knot-d.netlify.app',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True
 # ── Apps ─────────────────────────────────────────────────────────────────────
 INSTALLED_APPS = [
     'django.contrib.admin',
