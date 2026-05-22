@@ -3,22 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product — Floral knot</title>
+  <title>Product — Floral Knot</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
 <nav class="navbar">
   <div class="container nav-inner">
-    <a class="nav-logo" href="index.html">Floral  <span>Knot</span></a>
+    <a class="nav-logo" href="index.html"> <span><img src="./assets/logo.png" alt="Floral Knot "></span></a>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="products.html" class="active">Shop</a></li>
-      <li><a href="index.html#why-us">About</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li><a href="#why-us">About</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-cart-btn" onclick="location.href='products.html'">🛍️ Shop</button>
-    <button class="hamburger" id="ham-btn">☰</button>
+    <ul class="nav-links">
+      <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+      <li><a href=""><i class="fa-brands fa-facebook"></i></a></li>
+      <li><a href=""><i class="fa-brands fa-bluesky"></i></a></li>
+    </ul>
+    <button class="nav-cart-btn" onclick="location.href='products.html'"><i class="fa-solid fa-basket-shopping"></i> Shop Now</button>
+    
   </div>
 </nav>
 
@@ -45,8 +51,8 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <h3>🧵 Handmade Haven</h3>
-        <p>Supporting Indian artisans since 2023.</p>
+        <h3>Floral Knot</h3>
+        <p>Sustainable handmade blooms for every occasion.</p>
       </div>
       <div class="footer-col">
         <h4>Quick Links</h4>
@@ -58,11 +64,11 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="https://wa.me/917447220382">WhatsApp</a></li>
+          <li><a href="https://wa.me/+917447220382">WhatsApp</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom"><p>© 2026</p></div>
+    <div class="footer-bottom"><p>© 2026 floral knot</p></div>
   </div>
 </footer>
 
@@ -122,16 +128,16 @@ function renderProduct(p) {
           <div class="form-row">
             <div class="form-group">
               <label>Your Name *</label>
-              <input type="text" id="cust-name" placeholder="Priya Sharma" required />
+              <input type="text" id="cust-name" placeholder="Disha madurkar" required />
             </div>
             <div class="form-group">
               <label>Phone Number *</label>
-              <input type="tel" id="cust-phone" placeholder="+91 98765 43210" required />
+              <input type="tel" id="cust-phone" placeholder="+91 9998887776" required />
             </div>
           </div>
           <div class="form-group">
             <label>Email Address *</label>
-            <input type="email" id="cust-email" placeholder="priya@example.com" required />
+            <input type="email" id="cust-email" placeholder="disha@example.com" required />
           </div>
           <div class="form-group">
             <label>Delivery Address *</label>
@@ -152,7 +158,7 @@ function renderProduct(p) {
         ` : `
         <div style="padding:24px;background:var(--parchment);border-radius:var(--radius);text-align:center">
           <p style="font-size:18px;color:var(--muted)">This product is currently out of stock.</p>
-          <a href="https://wa.me/917447220382?text=Hi! I'm interested in ${encodeURIComponent(p.name)} when it's back in stock." class="btn btn-whatsapp" style="margin-top:16px" target="_blank">
+          <a href="https://wa.me/+917447220382?text=Hi! I'm interested in ${encodeURIComponent(p.name)} when it's back in stock." class="btn btn-whatsapp" style="margin-top:16px" target="_blank">
             💬 Notify me via WhatsApp
           </a>
         </div>
